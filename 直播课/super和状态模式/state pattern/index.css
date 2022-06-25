@@ -1,0 +1,30 @@
+.model {
+  width: 400px;
+  height: 450px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 2px 5px #ccc;
+}
+
+.header {
+  height: 50px;
+  line-height: 50px;
+  background-color: #ccc;
+  font-size: 20px;
+  text-indent: 1em;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.model.success .header {
+  background-color: green;
+}
+
+.model.warning .header {
+  background-color: orange;
+}
+
+.model.error .header {
+  background-color: red;
+}

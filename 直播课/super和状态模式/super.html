@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>super案例</title>
+</head>
+<body>
+  <script>
+    class Person {
+      constructor (name, age) {
+        this.name = name
+        this.age = age
+      }
+
+      hobby () {
+        console.log('干饭')
+      }
+
+      static eat () {
+        console.log('在吃了，别催了...')
+      }
+    }
+    Person.prototype.love = 'studying'
+
+    class Male extends Person {
+      constructor (name, age, gender) {
+        super(name, age) // 构造函数中把super当做函数调用相当于调用父类构造函数并将this指向改成子类实例
+        this.gender = gender
+      }
+
+      hobby () {
+        return super.hobby() // 这里super相当于Person的原型对象
+      }
+
+      static eat () {
+        super.eat() // 这里super相当于Person类本身
+      }
+    }
+
+    const mike = new Male('Mike', 17, 'male')
+    console.log(mike)
+    mike.hobby()
+    Male.eat()
+    console.log('--------------------------------')
+
+    class Female extends Person {
+      constructor (name, age, gender) {
+        super(name, age)
+        this.gender = gender
+        super.gender = 'female'
+        this.love = 'man'
+        super.love = 'Mike'
+        console.log(super.gender, this.gender) // undefined female
+        console.log(super.love, this.love) // studying Mike
+
+        // 这里需要注意的是，在构造函数中将super当做一个对象来使用的时候，直接访问super上的属性相当于访问父类的原型上的属性。而给super上的属性赋值则相当于给子类实例属性赋值。原因在于不能在子类构造函数中修改父类原型上的属性。这块比较反直觉，只能强行记忆
+      }
+    }
+
+    const female = new Female('Jerry', 17, 'male')
+    console.log(female)
+  </script>
+
+</body>
+</html>
