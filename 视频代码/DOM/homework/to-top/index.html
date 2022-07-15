@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to top</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="header">侠客行</div>
+  <div class="menu"></div>
+  <div class="to-top">
+    <div class="arrow"></div>
+    <div class="ractangle"></div>
+  </div>
+
+  <script type="module">
+    import data from './data.js'
+    import Render from './render.js'
+
+    new Render(document.getElementsByClassName('menu')[0], data)
+
+    const oToTop = document.getElementsByClassName('to-top')[0]
+    oToTop.addEventListener('click', () => window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth'
+    }))
+  </script>
+</body>
+
+</html>
