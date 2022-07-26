@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .select {
+      width: 200px;
+    }
+
+    .title {
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: #000;
+    }
+
+    .list {
+      height: 0;
+      overflow: hidden;
+    }
+
+    .list-item {
+      width: 200px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #999;
+    }
+
+    .list-item:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="select">
+    <div class="title"><a href="javascript:;">选择城市</a></div>
+    <ul class="list">
+      <li class="list-item"><a href="/">上海</a></li>
+      <li class="list-item"><a href="/">湖南</a></li>
+      <li class="list-item"><a href="/">重庆</a></li>
+      <li class="list-item"><a href="/">北京</a></li>
+      <li class="list-item"><a href="/">山西</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const oSelect = document.querySelector('.select')
+    const oList = oSelect.children[1]
+    let listHeight = 0
+    let timer
+    const speed = 10
+    oSelect.addEventListener('mouseover', function () {
+      clearInterval(timer)
+      timer = setInterval(() => {
+        if (oList.offsetHeight >= 150) clearInterval(timer)
+        oList.style.height = parseInt(getElemStyle(oList, 'height')) + speed + 'px'
+      }, 1)
+    })
+    oSelect.addEventListener('mouseleave', function () {
+      clearInterval(timer)
+      timer = setInterval(() => {
+        if (oList.offsetHeight <= 0) return clearInterval(timer)
+        oList.style.height = parseInt(getElemStyle(oList, 'height')) - speed + 'px'
+      }, 1)
+    })
+
+    function getElemStyle(el, prop) {
+      const style = window.getComputedStyle ? window.getComputedStyle(el) : el.currentStyle
+      return prop ? style[prop] : style
+    }
+  </script>
+</body>
+
+</html>
