@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todolist</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import Todolist from './js/index.js'
+
+    new Todolist({
+      container: '#app',
+      data: [
+        {
+          id: 0,
+          content: '学习'
+        },
+        {
+          id: 1,
+          content: '听歌'
+        }
+      ]
+    })
+  </script>
+</body>
+
+</html>
