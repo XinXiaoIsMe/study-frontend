@@ -7,7 +7,7 @@ export function getScrollOffset() {
   }
 
   return {
-    left: document.documentElement.scrollLeft + docuement.body.scrollLeft,
+    left: document.documentElement.scrollLeft + document.body.scrollLeft,
     top: document.documentElement.scrollTop + document.body.scrollTop
   }
 }
