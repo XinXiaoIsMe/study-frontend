@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="box">
+    <div class="box-hd">
+      <div class="hd-inner">
+        <a href="javascript:;" class="icon star">⭐️</a>
+        <span class="hd-title">可拖动的模态框</span>
+        <a href="javascript:;" class="icon close">×</a>
+      </div>
+    </div>
+    <div class="box-panel"></div>
+  </div>
+
+  <script type="module">
+    import Draggable from './plugin/draggable/index.js'
+    import { addEvent } from './plugin/draggable/utils.js'
+
+    const oContainer = document.querySelector('.box')
+    const oCloseIcon = document.querySelector('.close')
+
+    new Draggable({
+      container: oContainer,
+      dragArea: '.box-hd',
+      disableDragArea: '.close',
+      onDragStart(offsetX, offsetY) {
+        console.log('drag start', offsetX, offsetY)
+      },
+      onDragging(left, top) {
+        console.log('dragging', left, top)
+      },
+      onDragEnd(left, top) {
+        console.log('drag end', left, top)
+      }
+    })
+
+    addEvent(oCloseIcon, 'click', function () {
+      oContainer.remove()
+    })
+  </script>
+</body>
+
+</html>
